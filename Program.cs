@@ -1,27 +1,41 @@
 ﻿using System;
 using static DoorMachine;
 
-//public class kodePos
-//{
-//    public enum Kelurahan
-//    {
-//        Batununggal, Kujangsari, Mengger,
-//        Wates, Cijaura, Jatisari, Margasari, Sekejati, Kebonwaru,
-//        Maleer, Samoja
-//    };
+public class KodePos
+{
+    public enum Kelurahan
+    {
+        Batununggal, Kujangsari, Mengger,
+        Wates, Cijaura, Jatisari, Margasari, Sekejati, Kebonwaru,
+        Maleer, Samoja
+    };
 
-//    public static int getKodePos(Kelurahan kelurahan)
-//    {
-//        int[] kodePos = {40266, 40287, 40267, 40256, 40287,
-//        40286, 40286, 40286, 40272, 40274, 40273};
+    public static int GetKodePos(Kelurahan kelurahan)
+    {
+        int[] kodePos = {40266, 40287, 40267, 40256, 40287,
+        40286, 40286, 40286, 40272, 40274, 40273};
 
-//        return kodePos[(int)kelurahan];
-//    }
-//}
+        return kodePos[(int)kelurahan];
+    }
+}
+
+class main
+{
+    static void Main()
+    {
+        Console.WriteLine("Daftar Kelurahan dan Kode Pos:");
+
+        foreach (KodePos.Kelurahan kelurahan in Enum.GetValues(typeof(KodePos.Kelurahan)))
+        {
+            int kodePos = KodePos.GetKodePos(kelurahan);
+            Console.WriteLine($"{kelurahan} : {kodePos}");
+        }
+    }
+}
 
 public class DoorMachine
 {
-    public enum state {terkunci, terbuka};
+    public enum state { terkunci, terbuka };
 
     private state keadaanSekarang;
 
@@ -70,10 +84,12 @@ class main
         if (perintah == "buka")
         {
             pintu.BukaPintu();
-        } else if (perintah == "kunci")
+        }
+        else if (perintah == "kunci")
         {
             pintu.KunciPintu();
-        } else
+        }
+        else
         {
             Console.WriteLine("masukan 'buka' atau 'kunci'");
         }
